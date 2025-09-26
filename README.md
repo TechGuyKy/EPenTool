@@ -1,3 +1,5 @@
+This tool is still under ** Active Development **
+
 EPenTool (EPenT)
 
 A Windows 10/11/Server penetration-testing toolkit written in C# — by Kyle Hrzenak
