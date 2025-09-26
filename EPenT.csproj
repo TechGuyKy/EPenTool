@@ -78,9 +78,6 @@
     <Folder Include="Core\" />
     <Folder Include="Modules\Reconnaissance\" />
     <Folder Include="Modules\Exploitation\" />
-    <Folder Include="Modules\DefenseEvasion\" />
-    <Folder Include="Modules\CredentialAccess\" />
-    <Folder Include="Modules\Persistence\" />
     <Folder Include="Modules\LateralMovement\" />
     <Folder Include="Modules\PostExploitation\" />
     <Folder Include="Modules\Exfiltration\" />
