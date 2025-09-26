@@ -1,0 +1,239 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Platform>x64</Platform>
+    <PlatformTarget>x64</PlatformTarget>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyTitle>Elite Windows Penetration Testing Suite</AssemblyTitle>
+    <AssemblyDescription>Educational Windows Penetration Testing Framework</AssemblyDescription>
+    <AssemblyCompany>Elite Security Research</AssemblyCompany>
+    <AssemblyProduct>EliteWindowsPentestSuite</AssemblyProduct>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Copyright>Copyright © 2025 Elite Security Research</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+    <PackageReference Include="System.DirectoryServices" Version="8.0.0" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="8.0.0" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="itext7" Version="8.0.2" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.57" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Config\**\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\Reconnaissance\" />
+    <Folder Include="Modules\Exploitation\" />
+    <Folder Include="Modules\DefenseEvasion\" />
+    <Folder Include="Modules\CredentialAccess\" />
+    <Folder Include="Modules\Persistence\" />
+    <Folder Include="Modules\LateralMovement\" />
+    <Folder Include="Modules\PostExploitation\" />
+    <Folder Include="Modules\Exfiltration\" />
+    <Folder Include="Modules\AntiForensics\" />
+    <Folder Include="Exploits\Windows10\" />
+    <Folder Include="Exploits\Windows11\" />
+    <Folder Include="Exploits\Custom\" />
+    <Folder Include="Payloads\ReverseShells\" />
+    <Folder Include="Payloads\Backdoors\" />
+PayloadsDroppers    <Folder Include="Native\" />
+    <Folder Include="Models\Results\" />
+    <Folder Include="Models\Vulnerabilities\" />
+    <Folder Include="Models\System\" />
+    <Folder Include="Models\Security\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Reporting\Templates\" />
+    <Folder Include="Reporting\Generators\" />
+    <Folder Include="Config\" />
+    <Folder Include="Resources\Wordlists\" />
+    <Folder Include="Resources\Signatures\" />
+    <Folder Include="Resources\Templates\" />
+    <Folder Include="Tests\Core\" />
+    <Folder Include="Tests\Modules\" />
+    <Folder Include="Tests\Utils\" />
+    <Folder Include="Documentation\" />
+    <Folder Include="Output\Reports\" />
+    <Folder Include="Output\Logs\" />
+    <Folder Include="Output\Screenshots\" />
+    <Folder Include="Output\Extracted\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if not exist &quot;$(TargetDir)Config&quot; mkdir &quot;$(TargetDir)Config&quot;" />
+    <Exec Command="if not exist &quot;$(TargetDir)Resources&quot; mkdir &quot;$(TargetDir)Resources&quot;" />
+    <Exec Command="if not exist &quot;$(TargetDir)Output&quot; mkdir &quot;$(TargetDir)Output&quot;" />
+    <Exec Command="if not exist &quot;$(TargetDir)Output\Reports&quot; mkdir &quot;$(TargetDir)Output\Reports&quot;" />
+    <Exec Command="if not exist &quot;$(TargetDir)Output\Logs&quot; mkdir &quot;$(TargetDir)Output\Logs&quot;" />
+    <Exec Command="if not exist &quot;$(TargetDir)Output\Screenshots&quot; mkdir &quot;$(TargetDir)Output\Screenshots&quot;" />
+    <Exec Command="if not exist &quot;$(TargetDir)Output\Extracted&quot; mkdir &quot;$(TargetDir)Output\Extracted&quot;" />
+  </Target>
+
+</Project>	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<Platform>x64</Platform>
+		<PlatformTarget>x64</PlatformTarget>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AssemblyTitle>Elite Windows Penetration Testing Suite</AssemblyTitle>
+		<AssemblyDescription>Educational Windows Penetration Testing Framework</AssemblyDescription>
+		<AssemblyCompany>Elite Security Research</AssemblyCompany>
+		<AssemblyProduct>EliteWindowsPentestSuite</AssemblyProduct>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+		<Copyright>Copyright © 2025 Elite Security Research</Copyright>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DefineConstants>TRACE</DefineConstants>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="System.Management" Version="8.0.0" />
+		<PackageReference Include="System.DirectoryServices" Version="8.0.0" />
+		<PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
+		<PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+		<PackageReference Include="System.ServiceProcess.ServiceController" Version="8.0.0" />
+		<PackageReference Include="CommandLineParser" Version="2.9.1" />
+		<PackageReference Include="itext7" Version="8.0.2" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.57" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Config\**\*.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\**\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Core\" />
+		<Folder Include="Modules\Reconnaissance\" />
+		<Folder Include="Modules\Exploitation\" />
+		<Folder Include="Modules\DefenseEvasion\" />
+		<Folder Include="Modules\CredentialAccess\" />
+		<Folder Include="Modules\Persistence\" />
+		<Folder Include="Modules\LateralMovement\" />
+		<Folder Include="Modules\PostExploitation\" />
+		<Folder Include="Modules\Exfiltration\" />
+		<Folder Include="Modules\AntiForensics\" />
+		<Folder Include="Exploits\Windows10\" />
+		<Folder Include="Exploits\Windows11\" />
+		<Folder Include="Exploits\Custom\" />
+		<Folder Include="Payloads\ReverseShells\" />
+		<Folder Include="Payloads\Backdoors\" />
+		<Folder Include="Payloads\Droppers\" />
+		<Folder Include="Native\" />
+		<Folder Include="Models\Results\" />
+		<Folder Include="Models\Vulnerabilities\" />
+		<Folder Include="Models\System\" />
+		<Folder Include="Models\Security\" />
+		<Folder Include="Utils\" />
+		<Folder Include="Reporting\Templates\" />
+		<Folder Include="Reporting\Generators\" />
+		<Folder Include="Config\" />
+		<Folder Include="Resources\Wordlists\" />
+		<Folder Include="Resources\Signatures\" />
+		<Folder Include="Resources\Templates\" />
+		<Folder Include="Tests\Core\" />
+		<Folder Include="Tests\Modules\" />
+		<Folder Include="Tests\Utils\" />
+		<Folder Include="Documentation\" />
+		<Folder Include="Output\Reports\" />
+		<Folder Include="Output\Logs\" />
+		<Folder Include="Output\Screenshots\" />
+		<Folder Include="Output\Extracted\" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if not exist &quot;$(TargetDir)Config&quot; mkdir &quot;$(TargetDir)Config&quot;" />
+		<Exec Command="if not exist &quot;$(TargetDir)Resources&quot; mkdir &quot;$(TargetDir)Resources&quot;" />
+		<Exec Command="if not exist &quot;$(TargetDir)Output&quot; mkdir &quot;$(TargetDir)Output&quot;" />
+		<Exec Command="if not exist &quot;$(TargetDir)Output\Reports&quot; mkdir &quot;$(TargetDir)Output\Reports&quot;" />
+		<Exec Command="if not exist &quot;$(TargetDir)Output\Logs&quot; mkdir &quot;$(TargetDir)Output\Logs&quot;" />
+		<Exec Command="if not exist &quot;$(TargetDir)Output\Screenshots&quot; mkdir &quot;$(TargetDir)Output\Screenshots&quot;" />
+		<Exec Command="if not exist &quot;$(TargetDir)Output\Extracted&quot; mkdir &quot;$(TargetDir)Output\Extracted&quot;" />
+	Kyle HrzHrzenak T TechnologiessHrzenak Technologies
