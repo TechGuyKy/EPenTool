@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2025 Elite Security Research")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5029ea08588bbbd936cbfde8a7f7a559218699d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+000a63c86d0a01fc70f1ed5438b9c1b293701170")]
 [assembly: System.Reflection.AssemblyProductAttribute("EPenT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Elite Windows Penetration Testing Suite")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
